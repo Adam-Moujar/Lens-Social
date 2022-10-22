@@ -1,5 +1,4 @@
 import { createClient } from 'urql'
-import "http"
 
 const APIURL = 'https://api.lens.dev';
 
