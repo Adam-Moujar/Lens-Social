@@ -13,6 +13,7 @@ struct color{
     uint ID;
     string name;
     address owner;
+    uint code;
 }
 
 color[] public allTokens;
@@ -33,20 +34,26 @@ mapping(string =>bool) public tokenExists;
         return tokenAdress[owned];
     } 
 
-    function mintToken(string calldata _tokenName,address owned) public payable
+    function mintToken(string calldata _tokenName,address owned, uint code) public payable
     returns(uint){
         require(!tokenExists[_tokenName],"hh");
 
         _safeMint(owned,ID);
 
-        allTokens.push(color(ID,_tokenName,owned));
+        allTokens.push(color(ID,_tokenName,owned,code));
 
-        tokenAdress[owned].push(color(ID,_tokenName,owned));
+        tokenAdress[owned].push(color(ID,_tokenName,owned,code));
 
         tokenExists[_tokenName] = true;
 
         ID++;
         return ID--;
+
+    }
+
+    function cashin ( uint IDin) public returns (uint){
+
+        return 111;
 
     }
 }

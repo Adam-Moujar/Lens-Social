@@ -56,14 +56,21 @@ const counter = new web3.eth.Contract(abi, address);
 
 
 function createNFT(){
-   newToken = NFT.mintToken("bobo",senderAddress);
+   //newToken = NFT.mintToken("bobo",senderAddress);
+   return "nft7.png";
+
+
 
 };
 
 
-function transfer( ID ){
+function transfer ( ID ) {
 
-    
+   //code= NFT.cashin(ID);
+
+   code =  43454345;
+   return code;
+
 
 
 
