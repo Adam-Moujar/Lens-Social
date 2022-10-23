@@ -8,7 +8,7 @@ export const urqlClient= createClient({
 
 export const Profile = `
 query Profile {
-    profile(request: { profileId: "0x81" }) {
+    profile(request: { profileId: "0x10" }) {
       id
       name
       bio

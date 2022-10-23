@@ -28,6 +28,8 @@ export default function Home({ profile, nftArray, myNFT, recommendProfiles }) {
 
   async function follow(){
 
+    try{
+
     if(isConnected){
       await disconnectAsync();
     }
@@ -37,6 +39,10 @@ export default function Home({ profile, nftArray, myNFT, recommendProfiles }) {
 
 
     write();
+  } catch (err)
+  {
+    console.log(err);
+  }
 
   }
 
@@ -76,8 +82,14 @@ export default function Home({ profile, nftArray, myNFT, recommendProfiles }) {
             <div></div>
               <div>
                 <Button onClick={doNothing} type="primary">Transfer</Button>
+                <div></div>
+                <div> </div>
+                <Button onClick={doNothing} type="primary">Create</Button>
               </div>
             </div>
+              <div>
+                
+              </div>
             <div></div>
               <div className = {styles.follow}>
               <label for="NFT">Choose an NFT to trade</label>
