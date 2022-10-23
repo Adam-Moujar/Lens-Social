@@ -119,3 +119,17 @@
   color: rgba(0, 0, 0, 0.626);
   width: 300px;
 }
+
+.dropdowncontent
+{
+  background-color: white;
+  color: white;
+  min-width: 100px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#wgtmsr option{
+  width:100px;   
+ }

@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import { urqlClient, Profile } from "./api/lensCalls";
+import { urqlClient, Profile, recommendProfiles } from "./api/lensCalls";
 import { Tabs, Button } from "antd";
 import Moralis from "moralis";
 import { useConnect, useAccount, useDisconnect, useContractWrite, usePrepareContractWrite } from 'wagmi'
@@ -9,7 +9,7 @@ import abi from "../abi.json";
 
 const { TabPane } = Tabs;
 
-export default function Home({ profile, nftArray, myNFT }) {
+export default function Home({ profile, nftArray, myNFT, recommendProfiles }) {
 
   const { connectAsync } = useConnect();
   const { disconnectAsync } = useDisconnect();
@@ -40,6 +40,10 @@ export default function Home({ profile, nftArray, myNFT }) {
 
   }
 
+  async function doNothing()
+  {
+
+  }
 
 
   return (
@@ -68,6 +72,22 @@ export default function Home({ profile, nftArray, myNFT }) {
               <div>Following</div>
               <div>{profile.stats.totalFollowing}</div>
             </div>
+            <div className={styles.follow}></div>
+            <div></div>
+              <div>
+                <Button onClick={doNothing} type="primary">Transfer</Button>
+              </div>
+            </div>
+            <div></div>
+              <div className = {styles.follow}>
+              <label for="NFT">Choose an NFT to trade</label>
+              <div className= {styles.dropdowncontent}>
+              <select name="NFT" id="NFT">
+                <option value="temp"></option>
+              </select>
+              </div>
+              </div>
+            <div>
           </div>
         </div>
         <div className={styles.profileRight}>
@@ -108,6 +128,7 @@ export default function Home({ profile, nftArray, myNFT }) {
 
 export async function getServerSideProps() {
   const response = await urqlClient.query(Profile).toPromise();
+  const profiles = await urqlClient.query(Profile).toPromise();
 
   await Moralis.start({ apiKey: process.env.MORALIS_API_KEY });
 
@@ -144,6 +165,6 @@ export async function getServerSideProps() {
 
 
   return {
-    props: { profile: response?.data.profile, nftArray: nftArray, myNFT: myNFT },
+    props: { profile: response?.data.profile, nftArray: nftArray, myNFT: myNFT, recommendProfiles: recommendProfiles },
   };
 }
